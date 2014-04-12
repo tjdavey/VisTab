@@ -1,0 +1,1525 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns="http://www.owl-ontologies.com/OntologyVis.owl#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:j.0="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#"
+  xml:base="http://www.owl-ontologies.com/OntologyVis.owl">
+  <owl:Ontology rdf:about=""/>
+  <owl:Class rdf:ID="VisDataSet">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:ID="hasLabel"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="VisComponent"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:minCardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="hasDataPoint"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="GNUPlot_DataPoint_Reef">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:ID="hasVisReefName"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="GNUPlot_DataPoint"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Data point used to add the necessary constraints to data points which represent a reef in the base ontology.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="GNUPlot_Circles">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="GNUPlot_Dimension2"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="VisDataPoint">
+    <rdfs:subClassOf rdf:resource="#VisComponent"/>
+  </owl:Class>
+  <owl:Class rdf:ID="GNUPlot_Points">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#GNUPlot_Dimension2"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="GNUPlot_DataSet">
+    <rdfs:subClassOf rdf:resource="#VisDataSet"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:ID="hasStyle"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="GNUPlot_Line">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#GNUPlot_Dimension2"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="GNUPlot_LinePointMixed">
+    <rdfs:subClassOf rdf:resource="#GNUPlot_Points"/>
+    <rdfs:subClassOf rdf:resource="#GNUPlot_Line"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#GNUPlot_Dimension2"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="GNUPlot_Impulses">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#GNUPlot_Dimension2"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Visualisation">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="hasDataSet"/>
+        </owl:onProperty>
+        <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:minCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:ID="hasExportClass"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="#hasLabel"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:Class>
+  <owl:Class rdf:ID="GNUPlot_CirclesPointsMixed">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Class for visualisations which contain both circle and point plots.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#GNUPlot_Circles"/>
+    <rdfs:subClassOf rdf:resource="#GNUPlot_Points"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#GNUPlot_Dimension2"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="GNUPlot_LinePoints">
+    <rdfs:subClassOf rdf:resource="#GNUPlot_Line"/>
+  </owl:Class>
+  <owl:Class rdf:ID="GNUPlot_Histogram">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#GNUPlot_Dimension2"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#GNUPlot_Dimension2">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:maxCardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="hasIndexProperty"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="GNUPlot"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:ID="hasXAxisLabel"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:ID="hasYAxisLabel"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="hasXAxisProperty"/>
+        </owl:onProperty>
+        <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:minCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:minCardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="hasYAxisProperty"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="GNUPlot_Dimension3">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#GNUPlot"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#GNUPlot_Dimension2"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:ID="hasZAxisLabel"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:minCardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="hasZAxisProperty"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#GNUPlot_DataPoint">
+    <rdfs:subClassOf rdf:resource="#VisDataPoint"/>
+  </owl:Class>
+  <owl:Class rdf:about="#GNUPlot">
+    <rdfs:subClassOf rdf:resource="#Visualisation"/>
+  </owl:Class>
+  <owl:ObjectProperty rdf:ID="hasTemporalAxisProperty">
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:ID="hasAxisProperty"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#hasYAxisProperty">
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#hasAxisProperty"/>
+    </rdfs:subPropertyOf>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#hasIndexProperty">
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#hasAxisProperty"/>
+    </rdfs:subPropertyOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The Index Property is the property which will act as the primary index key in</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasValueAxisProperty">
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#hasAxisProperty"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#hasXAxisProperty">
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#hasAxisProperty"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#hasAxisProperty">
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#hasZAxisProperty">
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:subPropertyOf rdf:resource="#hasAxisProperty"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#hasDataSet">
+    <rdfs:range rdf:resource="#VisDataSet"/>
+    <rdfs:domain rdf:resource="#Visualisation"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#hasDataPoint">
+    <rdfs:domain rdf:resource="#VisDataSet"/>
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:about="#hasVisReefName">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="#hasStyle">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="#hasLabel">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="#hasExportClass">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Stores the Java Class used to Export Visualisation formats in the Visualisation Tab</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_54">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_113">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-17T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_6">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_73">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_265">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Cleveland_Bay_10">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_194">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_180">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_391">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_2">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_255">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Cleveland_Bay_61">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_64">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_63">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Florence_Bay_Slope_419">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-17T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_103">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_217">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Florence_Bay_Flat_120">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-17T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_28">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_53">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_50">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_31">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_181">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_266">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_72">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_195">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_82">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_1">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_40">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Cleveland_Bay_63">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_62">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Florence_Bay_Flat_180">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-17T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_218">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_60">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_11">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_70">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_295">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_52">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_267">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_280">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_209">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_8">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_51">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_66">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Kelso_Reef_Slope_494">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_3">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_253">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_192">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Cleveland_Bay_88">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_219">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/GBR_Rules.owl#SSTplus_1degreesAboveLMST">
+    <j.0:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+    >false</j.0:isRuleEnabled>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_315">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Slope_198">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-17T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Slope_184">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-17T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_51">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_294">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_71">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_229">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_52">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Cleveland_Bay_79">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_70">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_65">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Cleveland_Bay_60">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_193">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_4">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_345">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_19">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_183">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_254">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_615">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_50">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-16</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_89">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-17T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_13">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_72">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_240">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_268">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_282">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_184">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Cleveland_Bay_86">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_18">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Florence_Bay_Flat_184">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-17T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_177">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_251">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_198">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_261">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_207">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Kelso_Reef_Flat_14">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-17T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_36">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_220">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_78">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_73">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_241">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Cleveland_Bay_90">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_63">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_231">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_292">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Cleveland_Bay_66">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_185">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Cleveland_Bay_87">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Florence_Bay_Flat_185">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-17T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_6">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_252">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_10">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-09-19</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_9">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-09-18</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_262">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_208">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_199">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_271">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_35">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Cleveland_Bay_72">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Kelso_Reef_Slope_587">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-17T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_74">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_242">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Slope_102">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-17T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_291">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_106">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_64">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_232">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_179">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_7">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Florence_Bay_Flat_156">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-17T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_284">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_270">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_205">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_196">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_9">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_78">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_11">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_263">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_77">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_75">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_243">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_12">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Florence_Bay_Flat_341">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-17T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_10">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_39">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_61">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_290">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Cleveland_Bay_64">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_61">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_187">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_178">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_8">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_250">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_283">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Cleveland_Bay_85">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/GBR_Rules.owl#SSTplus_4degreesAboveLMST">
+    <j.0:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+    >false</j.0:isRuleEnabled>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_197">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_37">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_264">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_74">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_206">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef.owl#Acropora_">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-10-02T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_76">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_244">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Kelso_Reef_Flat_142">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-17T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_13">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_62">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_230">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Cleveland_Bay_84">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Cleveland_Bay_65">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_60">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Cleveland_Bay_59">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_37">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/GBR_Rules.owl#Hotspot_Cat_3">
+    <j.0:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+    >false</j.0:isRuleEnabled>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_79">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Cleveland_Bay_81">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Kelso_Reef_Slope_705">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-17T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_66">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_14">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_49">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_276">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_223">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_25">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_203">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_67">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_236">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Slope_151">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-17T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_57">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_59">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_188">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_36">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_55">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/GBR_Rules.owl#Hotspot_Cat_2">
+    <j.0:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+    >false</j.0:isRuleEnabled>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_65">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_245">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_224">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_15">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_275">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_26">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_204">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_39">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_235">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_56">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_189">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_210">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_234">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Cleveland_Bay_57">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_35">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Florence_Bay_Slope_393">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-17T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Slope_200">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_49">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_201">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Kelso_Reef_Flat_212">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-17T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_274">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_23">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_69">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_47">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_288">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_233">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_27">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_53">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_467">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Cleveland_Bay_80">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-09-18</hasDateOf>
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_34">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Cleveland_Bay_56">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-09-18</hasDateOf>
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Florence_Bay_Slope_548">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-17T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Kelso_Reef_Slope_585">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-17T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Cleveland_Bay_70">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_68">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_17">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_273">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_202">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_24">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_222">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_287">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_212">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/GBR_Rules.owl#SSTplus_2degreesAboveLMST">
+    <j.0:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+    >false</j.0:isRuleEnabled>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_84">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_227">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_213">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Florence_Bay_Flat_512">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-17T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_32">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_550">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_45">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_21">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Cleveland_Bay_69">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_200">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_228">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_279">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_83">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_259">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_214">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Kelso_Reef_Flat_96">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-17T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Slope_215">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-17T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/GBR_Rules.owl#SSTplus_5degreesAboveLMST">
+    <j.0:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+    >false</j.0:isRuleEnabled>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_56">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Slope_168">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-17T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_239">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_289">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_46">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_41">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_249">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/GBR_Rules.owl#maxSST_Cat_3">
+    <j.0:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+    >false</j.0:isRuleEnabled>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_22">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_225">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_82">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_99">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-17T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_40">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Slope_263">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/GBR_Rules.owl#Hotspot_Cat_1">
+    <j.0:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+    >false</j.0:isRuleEnabled>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_258">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_215">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_81">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Kelso_Reef_Flat_98">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-17T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_57">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_59">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_238">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/GBR_Rules.owl#maxSST_Cat_2">
+    <j.0:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+    >false</j.0:isRuleEnabled>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_43">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_191">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_278">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_44">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_226">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_81">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Slope_213">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-17T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_216">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_257">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_58">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_80">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-10T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_237">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_58">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/GBR_Rules.owl#All_anomaly">
+    <j.0:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+    >false</j.0:isRuleEnabled>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_20">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_44">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_42">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Davies_Reef_43">
+    <hasDateOf rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2011-11-10</hasDateOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/GBR_Rules.owl#maxSST_Cat_1">
+    <j.0:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+    >false</j.0:isRuleEnabled>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/GBR_Rules.owl#SSTplus_3degreesAboveLMST">
+    <j.0:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+    >false</j.0:isRuleEnabled>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/Coral_Reef_GBR.owl#Myrmidon_Reef_Flat_277">
+    <hasDateTimeOf rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2011-11-16T00:00:00</hasDateTimeOf>
+  </rdf:Description>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.4, Build 130)  http://protege.stanford.edu -->
